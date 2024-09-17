@@ -1,4 +1,3 @@
-
 // Solution 1
 const myString1 = 'developer';
 const stringModify = myString1[0].toUpperCase();
@@ -59,33 +58,35 @@ console.log(ar12);
 
 //Object Challenge
 // step 1
-const library = [
-    {
-   title: 'Kobsar',
-   author: 'Taras Shevchenko',
-  status: {
-    own: false,
-    reading: false,
-    read: false
-}},
+const library = [{
+    title: 'Kobsar',
+    author: 'Taras Shevchenko',
+    status: {
+      own: false,
+      reading: false,
+      read: false
+    }
+  },
 
-{
+  {
     title: 'Kobsar2',
     author: 'Taras Shevchenko2',
-   status: {
-     own: false,
-     reading: false,
-     read: false
- }},
+    status: {
+      own: false,
+      reading: false,
+      read: false
+    }
+  },
 
- {
+  {
     title: 'Kobsar3',
     author: 'Taras Shevchenko3',
-   status: {
-     own: false,
-     reading: false,
-     read: false
- }},
+    status: {
+      own: false,
+      reading: false,
+      read: false
+    }
+  },
 
 ];
 // step 2
@@ -123,46 +124,210 @@ arr = [5, 6, 7]; // Це викличе помилку, оскільки змі�
 
 //Ось кілька операцій, які можна виконувати з масивами в JavaScript, і приклади коду для кожної з них:
 
-1. Додавання елементів
-Операція: push()
-Опис: Додає елемент(-и) в кінець масиву:
+// 1. Додавання елементів
+//Операція: push()
+// Опис: Додає елемент(-и) в кінець масиву:
 
-const arr = [1, 2, 3];
+  const arr = [1, 2, 3];
 arr.push(4); // Додаємо елемент 4
 console.log(arr); // [1, 2, 3, 4]
 
 
-Операція: unshift()
-Опис: Додає елемент(-и) на початок масиву:
+// Операція: unshift()
+// Опис: Додає елемент(-и) на початок масиву:
 
-const arr = [1, 2, 3];
+  const arr = [1, 2, 3];
 arr.unshift(0); // Додаємо елемент 0 на початок
 console.log(arr); // [0, 1, 2, 3]
 
-2. Видалення елементів
+// 2. Видалення елементів
 
-Операція: pop()
-Опис: Видаляє останній елемент масиву:
+// Операція: pop()
+// Опис: Видаляє останній елемент масиву:
 
-const arr = [1, 2, 3];
+  const arr = [1, 2, 3];
 arr.pop(); // Видаляємо останній елемент
 console.log(arr); // [1, 2]
 
+// Операція: shift()
+// Опис: Видаляє перший елемент масиву:
+
+const arr = [1, 2, 3];
+arr.shift(); // Видаляємо перший елемент
+console.log(arr); // [2, 3]
+
+
+//***************************
+
+
+//Your task is to make a function that can take any non-negative integer as an argument and return it with its digits in descending order. Essentially, rearrange the digits to create the highest possible number.
+//Examples:
+//Input: 42145 Output: 54421
+//Input: 145263 Output: 654321
+
+function descendingOrder(n) {
+  return parseInt(n.toString().split('').sort((a, b) => b - a).join(''), 10);
+}
+// How it works:
+// n.toString() converts the number into a string.
+// .split('') converts the string into an array of individual digits.
+// .sort((a, b) => b - a) sorts the array in descending order.
+// .join('') joins the sorted array back into a string.
+// parseInt(..., 10) converts the string back into an integer.
+
+//***************************
+
+// mplement the js function unique_in_order which takes as argument a sequence and returns a list of items without any elements with the same value next to each other and preserving the original order of elements. 
+
+// For example:
+
+uniqueInOrder('AAAABBBCCDAABBB') == ['A', 'B', 'C', 'D', 'A', 'B']
+uniqueInOrder('ABBCcAD')         == ['A', 'B', 'C', 'c', 'A', 'D']
+uniqueInOrder([1,2,2,3,3])       == [1,2,3]
+
+// Here's the implementation:
+
+function uniqueInOrder(seq) {
+  const result = [];
+  let previous;
+
+  for (let i = 0; i < seq.length; i++) {
+    if (seq[i] !== previous) {
+      result.push(seq[i]);
+      previous = seq[i];
+    }
+  }
+
+  return result;
+}
 
 
 
+// To implement the uniqueInOrder function in JavaScript, we'll iterate through the given sequence and compare each element with the previous one. If the current element is different from the previous one, we'll add it to the result array. This approach ensures that we eliminate consecutive duplicates while preserving the original order.
+
+// Here's the implementation:
 
 
+function uniqueInOrder(seq) {
+  const result = [];
+  let previous;
+
+  for (let i = 0; i < seq.length; i++) {
+    if (seq[i] !== previous) {
+      result.push(seq[i]);
+      previous = seq[i];
+    }
+  }
+
+  return result;
+}
+// Explanation:
+
+// Initialization:
+
+// We initialize an empty array result to store the unique elements.
+// We use a variable previous to keep track of the previous element in the sequence.
+// Iteration:
+
+// We loop through each element in the sequence using a for loop.
+// We compare the current element seq[i] with the previous element.
+// If they are not the same, we push the current element into the result array.
+// We then update the previous variable to the current element.
+// Return:
+
+// After the loop completes, we return the result array containing the unique elements.
 
 
+//*********************************************
+
+// Make a program that filters a list of strings and returns a list with only your friends name in it.
+
+// If a name has exactly 4 letters in it, you can be sure that it has to be a friend of yours! Otherwise, you can be sure he's not...
+
+function friend(friends) {
+  return friends.filter(names => names.length === 4);
+}
+//*****************************************************/
+// a function that takes a list of non-negative integers and strings and returns a new list with the strings filtered out.
+
+function filter_list(l) {
+  return l.filter(item => typeof item === 'number' && item >= 0);
+}
+
+//*****************************************************/
 
 
+// Задачі від ChatGPT//
 
 
+//Задача 1: Створи масив чисел від 1 до 10. Використовуючи метод масиву, виведи у консоль всі парні числа з цього масиву(filter)
+
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const evens = numbers.filter(number => number % 2 === 0);
+console.log(evens);
 
 
+//Задача 2 : Додай до цього масиву ще одне ім'я "Андрій" на початок і "Світлана" в кінець(unshift, push).
+
+const names = ["Олена", "Іван", "Марія", "Петро", "Наталія"];
+names.unshift("Андрій");
+names.push("Світлана");
+console.log(names);
+
+//Задача 3 : Знайди суму всіх чисел в цьому масиві.
+
+const numbers = [3, 6, 2, 9, 4];
+const arraySum = numbers.reduce((accumulator, currentvalue) => accumulator + currentvalue, 0);
+return arraySum;
+
+//Задача 4 : Створи функцію, яка приймає масив чисел і повертає новий масив, в якому всі числа помножені на 2.
+
+function multuplyByTwo (array){
+  return array.map(arrayElement => arrayElement * 2);
+}
+
+//Задача 5 : Виведи в консоль імена всіх користувачів старших за 26 років.
+
+const users = [
+  { name: "Олена", age: 25 },
+  { name: "Іван", age: 30 },
+  { name: "Марія", age: 28 },
+];
+
+const olderThan26 = users.filter(user => user.age > 26).map(user => user.name);
+console.log(olderThan26);
 
 
+//Задача 6 : Знайди перше число в масиві, яке більше за 10.
+const numbers = [5, 12, 8, 130, 44]; 
+const iteration = numbers.find(number => number > 10);
+console.log(iteration);
+
+//Задача 7: Відсортуй цей масив в алфавітному порядку.
+const words = ["яблуко", "банан", "ананас", "абрикос", "авокадо"];
+const abcOrder = words.sort();
+console.log(abcOrder);
+
+//Задача 8:Створи масив чисел від 1 до 100. Видали з цього масиву всі числа, які діляться на 3.
+const numbers = Array.from({ length: 100 }, (_, index) => index + 1);
+console.log(numbers);
 
 
+//Задача 9: Перетвори масив в одномірний масив: [1, 2, 3, 4, 5].
+
+const arr = [1, [2, [3, [4, [5]]]]];
+const arrFlat = arr.flat(4);
+console.log(arrFlat);
+
+//Задача 10 : Є масив об'єктів товарів: Знайди середню ціну всіх товарів.
+const products = [
+  { name: "Телефон", price: 10000 },
+  { name: "Ноутбук", price: 25000 },
+  { name: "Планшет", price: 15000 },
+  { name: "Монітор", price: 7000 },
+];
+
+const totalPrice = products.reduce((accumulator, product) => accumulator + product.price, 0);
+const averagePrice = totalPrice / products.length;
+console.log(averagePrice);
 
