@@ -202,9 +202,7 @@ function uniqueInOrder(seq) {
 }
 
 
-
 // To implement the uniqueInOrder function in JavaScript, we'll iterate through the given sequence and compare each element with the previous one. If the current element is different from the previous one, we'll add it to the result array. This approach ensures that we eliminate consecutive duplicates while preserving the original order.
-
 // Here's the implementation:
 
 
@@ -257,7 +255,7 @@ function filter_list(l) {
 //*****************************************************/
 
 
-// Задачі від ChatGPT//
+// Задачі від ChatGPT ----1 //
 
 
 //Задача 1: Створи масив чисел від 1 до 10. Використовуючи метод масиву, виведи у консоль всі парні числа з цього масиву(filter)
@@ -310,11 +308,12 @@ console.log(abcOrder);
 
 //Задача 8:Створи масив чисел від 1 до 100. Видали з цього масиву всі числа, які діляться на 3.
 const numbers = Array.from({ length: 100 }, (_, index) => index + 1);
-console.log(numbers);
-
+//видалення чисел що діялться на 3
+// const divideByThree = 
+const filteredNumbers = numbers.filter(number => number % 3 !== 0 );
+console.log(filteredNumbers);
 
 //Задача 9: Перетвори масив в одномірний масив: [1, 2, 3, 4, 5].
-
 const arr = [1, [2, [3, [4, [5]]]]];
 const arrFlat = arr.flat(4);
 console.log(arrFlat);
@@ -330,4 +329,93 @@ const products = [
 const totalPrice = products.reduce((accumulator, product) => accumulator + product.price, 0);
 const averagePrice = totalPrice / products.length;
 console.log(averagePrice);
+
+
+// Задачі від ChatGPT ---- 2 //
+
+//Задачі по масивах:
+
+//Задача 2.1 :Є масив чисел: const numbers = [10, 5, 12, 8, 7, 3, 9, 6]; найди максимальне та мінімальне число в цьому масиві.
+
+const numberrs = [10, 5, 12, 8, 7, 3, 9, 6]; 
+const max = Math.max(...array);
+const min = Math.min(...array);
+console.log('Максимальне число: ${max}');
+console.log('Мінімальне число: ${min}');
+
+
+//Деконструктиризація
+
+
+// Завдання 1: Деструктуризація масиву
+// У вас є масив з трьох чисел. Використайте деструктуризацію, щоб витягнути перше і третє число в окремі змінні.
+
+const numbers3 = [10, 20, 30]
+const [first, , third] = numbers3;
+console.log(first); 
+console.log(third); 
+
+
+// Завдання 2: Деструктуризація об'єкта
+// У вас є об'єкт, що містить інформацію про книгу. Використайте деструктуризацію, щоб витягнути назву та автора книги в окремі змінні.
+
+const book = {
+  title: '1984',
+  author: 'George Orwell',
+  year: 1949,
+};
+
+const { title, author } = book;
+console.log(title);  // '1984'
+console.log(author); // 'George Orwell'
+
+
+// Завдання 3: Деструктуризація з параметрами функції
+// Створіть функцію, яка приймає об'єкт з інформацією про автомобіль (марка, модель, рік) і виводить цю інформацію в консоль, використовуючи деструктуризацію.
+
+const car = {
+  make: 'Toyota',
+  model: 'Camry',
+  year: 2020,
+};
+
+function carDes({make, model, year}) {
+  console.log(`Car Make: ${make}`);
+  console.log(`Car Model: ${model}`);
+  console.log(`Car Year: ${year}`);
+}
+carDes(car);// Виведе інформацію про автомобіль
+
+
+// Завдання 4: Деструктуризація в масиві об'єктів
+// У вас є масив об'єктів, кожен з яких містить інформацію про людину (ім'я та вік). Використайте деструктуризацію, щоб вивести ім'я та вік кожної людини в консоль.
+
+const people = [
+  { name: 'Alice', age: 25 },
+  { name: 'Bob', age: 30 },
+  { name: 'Charlie', age: 35 },
+];
+
+people.forEach(({name, age}) => {
+  console.log(`Ім'я: ${nanme}; Вік: ${age}`);
+}
+);
+
+// Завдання 5: Додаткове (за бажанням)
+// Спробуйте деструктуризувати значення з масиву, присвоївши їм значення за замовчуванням, якщо вони не існують.
+
+const values = [1, 2];
+
+
+const [first1, second2, third3 = 3] = values;
+
+console.log(first); 
+console.log(second);
+
+console.log(third);
+
+
+
+
+
 
