@@ -397,7 +397,7 @@ const people = [
 ];
 
 people.forEach(({name, age}) => {
-  console.log(`Ім'я: ${nanme}; Вік: ${age}`);
+  console.log(`Ім'я: ${name}; Вік: ${age}`);
 }
 );
 
