@@ -411,8 +411,34 @@ const [first1, second2, third3 = 3] = values;
 
 console.log(first); 
 console.log(second);
-
 console.log(third);
+
+
+//JavaScript Switch Statement
+
+const calculator = (num1, num2, operator) => {
+  let result;
+  switch (operator) {
+    case '+':
+      result = num1 + num2;
+      break;
+    case '-':
+      result = num1 - num2;
+      break;
+    case '/':
+      result = num1 / num2;
+      break;
+    case '*':
+      result = num1 * num2;
+      break;
+    default:
+      result = 'Invalid Operator';
+  }
+  console.log(result);
+  return result;
+};
+
+calculator(5, 2, '-');
 
 
 
