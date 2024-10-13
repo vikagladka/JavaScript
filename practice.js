@@ -485,6 +485,35 @@ for (const key in object) {
 }
 
 
+// 1 Завдання від ментора: виправити баг щоб функція запрацювала:
+const arr1 = [0, 1, 2, [3, 4]];
+const arr2 = [];
+ 
+for(let i = 0; i < arr1.lenght; i++) {
+    if (arr1[i].lenght) {
+        for(let j = 0; j < i.lenght; j++) {
+            arr2.push(i[j]);
+        }
+    } else {
+        arr2.push(arr1[i]);
+    }
+}
+ 
+console.log('arr2', arr2);
+
+
+// 2 Завдання від ментора: зробити з багатовимірних масивів - одновимірні, не використовуючи готові методи, а використовуютьчи тільки цикл for:
+
+const arr11 = [0, 1, 2, [3, 4, [5, 6]]];
+const arr22 = [0, 1, 2, [3, 4, [5, 6], [7, 8]]];
 
 
 
+// 3 Завдання від ментора: написати свою власну функцію - незалежно скільки рівнів має масив:
+function transformArray(arr) {
+  .....
+  return newArr;
+}
+
+const arr2 = transformArray(arr1);
+console.log('arr2', arr2);
