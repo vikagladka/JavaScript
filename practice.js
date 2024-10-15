@@ -485,7 +485,18 @@ for (const key in object) {
 }
 
 
-// 1 Завдання від ментора: виправити баг щоб функція запрацювала:
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+
+
+
+// 1 виправити баг щоб функція запрацювала:
 const arr1 = [0, 1, 2, [3, 4]];
 const arr2 = [];
  
@@ -501,15 +512,139 @@ for(let i = 0; i < arr1.lenght; i++) {
  
 console.log('arr2', arr2);
 
+//розвязка 1:
 
-// 2 Завдання від ментора: зробити з багатовимірних масивів - одновимірні, не використовуючи готові методи, а використовуютьчи тільки цикл for:
+const arr1 = [0, 1, 2, [3, 4]];
+const arr2 = [];
 
-const arr11 = [0, 1, 2, [3, 4, [5, 6]]];
-const arr22 = [0, 1, 2, [3, 4, [5, 6], [7, 8]]];
+for (let i = 0; i < arr1.length; i++) {
+  //
+  if (Array.isArray(arr1[i])) {
+    for (let j = 0; j < arr1[i].length; j++) {
+      arr2.push(arr1[i[j]]);
+    }
+  } else {
+    arr2.push(arr1[i])
+  }
+}
+console.log('arr2', arr2);
 
 
+//arr2 Array(5) [ 0, 1, 2, undefined, undefined ] --> не робе ЯК ТРЕБА, КУРВА 
 
-// 3 Завдання від ментора: написати свою власну функцію - незалежно скільки рівнів має масив:
+//розвязка 2:
+
+const arr1 = [0, 1, 2, [3, 4]];
+const arr2 = [];
+
+for (let i = 0; i < arr1.length; i++) {
+  if (Array.isArray(arr1[i])) {
+    for (let j = 0; j < arr1[i].length; j++) {
+      arr2.push(arr1[i][j]);
+    }
+  } else {
+    arr2.push(arr1[i])
+  }
+}
+console.log('arr2', arr2);
+
+//arr2 Array(5) [ 0, 1, 2, 3, 4 ] ---> ОЦЕ ВЖЕ ГУД ПРАЦЮЄ, МАСИВ ПЛАСКИЙ ЯК ЗВИВИНИ МОЄЇ КОЛИШНЬОЇ ПОДРУГИ
+
+// 2  зробити з багатовимірних масивів - одновимірні, не використовуючи готові методи, а використовуютьчи тільки цикл for:
+
+const arr1 = [0, 1, 2, [3, 4, [5, 6]]];
+const arr2 = [0, 1, 2, [3, 4, [5, 6], [7, 8]]];
+
+//Вирішення 1  - не робеее...
+const arr = [0, 1, 2, [3, 4, [5, 6]]];
+const flatArr = [];
+
+for (a = 0; a < arr.length; a++) {
+  if (Array.isArray(arr[a])) {
+
+    for (b = 0; b < arr[a].length; b++) {
+      flatArr.push(arr[a][b]);
+      if (Array.isArray(arr[a][b])) {
+        for (c = 0; b < arr[b].length; c++) {
+          flatArr.push(arr[a][b][c]);
+        } 
+        }
+      }
+    }else {
+          flatArr.push(arr[a]);
+  }
+  console.log('flatArr', flatArr);
+}
+//flatArr 
+// Array [ 0 ]
+// debugger eval code:18:11
+// flatArr 
+// Array [ 0, 1 ]
+// debugger eval code:18:11
+// flatArr 
+// Array(3) [ 0, 1, 2 ]
+// debugger eval code:18:11
+// flatArr 
+// Array(6) [ 0, 1, 2, 3, 4, (2) […] ]
+// debugger eval code:18:11
+// undefined 
+
+//Вирішення 2  - не робеее...
+
+const arr = [0, 1, 2, [3, 4, [5, 6]]];
+const flatArr = [];
+
+for (a = 0; a < arr.length; a++) {
+  if (Array.isArray(arr[a])) {
+    for (b = 0; b < arr[a].length; b++) {
+      flatArr.push(arr[b]);
+    }
+  } else if (Array.isArray(arr[b])) {
+    for (c = 0; c < arr[b].length; c++) {
+      flatArr.push(arr[c]);
+
+    }
+  } else {
+    flatArr.push(arr[a]);
+  }
+}
+console.log('flatArr', flatArr);
+//Uncaught ReferenceError: b is not defined
+
+
+//Вирішення 3  - курва не робеее...
+
+const arr = [0, 1, 2, [3, 4, [5, 6]]];
+const flatArr = [];
+
+for (let a = 0; a < arr.length; a++) {
+  Array.isArray(arr[a]) ?  for (let b = 0; b < arr[a].length; b++) { flatArr.push(arr[a][b]);} :    
+ Array.isArray(arr[a]) ? for (let b = 0; b < arr[a].length; b++) { flatArr.push(arr[a][b]);} :
+ Array.isArray(arr[a][b]) ? for (let c = 0; c < arr[a][b].length; c++) {flatArr.push(arr[a][b][c]);} :
+ Array.isArray(arr[a][b][c]) ? {for (let d = 0; d < arr[a][b][c].length; d++) {flatArr.push(arr[a][b][c][d]);} :
+ flatArr.push(arr[a]);}}
+console.log('flatArr', flatArr);
+//Uncaught SyntaxError: expected expression, got keyword 'for'
+
+//Вирішення 4  - ок
+
+function flatArrFunction(array){
+  for (i=0; i<array.length; i++){
+    Array.isArray(array[i]) ? flatArrFunction(array[i]) : EmptyArray.push(array[i]);
+  }
+}
+flatArrFunction(arr1);
+console.log('flatArr:', EmptyArray);
+flatArrFunction(arr2);
+console.log('flatArr:', EmptyArray);
+
+// flatArr: 
+// Array(7) [ 0, 1, 2, 3, 4, 5, 6 ]
+
+// flatArr: 
+// Array(16) [ 0, 1, 2, 3, 4, 5, 6, 0, 1, 2, … ]
+
+// 3 написати свою власну функцію - незалежно скільки рівнів має масив:
 function transformArray(arr) {
   .....
   return newArr;
@@ -517,3 +652,29 @@ function transformArray(arr) {
 
 const arr2 = transformArray(arr1);
 console.log('arr2', arr2);
+
+// Рішення 1
+
+const arr1 = [0, 1, 2, [3, 4, [5, 6]]];
+const arr2 = [0, 1, 2, [3, 4, [5, 6], [7, 8]]];
+const arr = [0, 1, 2, [3, 4, [5, 6]]];
+const flatArr = [];
+
+function flatArrFun(array) {
+  for (let i = 0; i < array.length; i++) {
+    if (Array.isArray(array[i])) {
+      flatArrFun(array[i]); 
+    } else {
+      flatArr.push(array[i]); 
+    }
+  }
+}
+
+flatArrFun(arr);
+console.log('flatArr:', flatArr);
+
+flatArrFun(arr1);
+console.log('flatArr:', flatArr);
+
+flatArrFun(arr2);
+console.log('flatArr:', flatArr);
