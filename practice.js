@@ -618,7 +618,7 @@ const arr = [0, 1, 2, [3, 4, [5, 6]]];
 const flatArr = [];
 
 for (let a = 0; a < arr.length; a++) {
-  Array.isArray(arr[a]) ?  for (let b = 0; b < arr[a].length; b++) { flatArr.push(arr[a][b]);} :    
+ Array.isArray(arr[a]) ?  for (let b = 0; b < arr[a].length; b++) { flatArr.push(arr[a][b]);} :    
  Array.isArray(arr[a]) ? for (let b = 0; b < arr[a].length; b++) { flatArr.push(arr[a][b]);} :
  Array.isArray(arr[a][b]) ? for (let c = 0; c < arr[a][b].length; c++) {flatArr.push(arr[a][b][c]);} :
  Array.isArray(arr[a][b][c]) ? {for (let d = 0; d < arr[a][b][c].length; d++) {flatArr.push(arr[a][b][c][d]);} :
@@ -633,6 +633,7 @@ function flatArrFunction(array){
     Array.isArray(array[i]) ? flatArrFunction(array[i]) : EmptyArray.push(array[i]);
   }
 }
+
 flatArrFunction(arr1);
 console.log('flatArr:', EmptyArray);
 flatArrFunction(arr2);
@@ -644,7 +645,72 @@ console.log('flatArr:', EmptyArray);
 // flatArr: 
 // Array(16) [ 0, 1, 2, 3, 4, 5, 6, 0, 1, 2, … ]
 
-// 3 написати свою власну функцію - незалежно скільки рівнів має масив:
+//Вирішення 5  - ок. 
+//Ця функція flattenArray призначена для "розплющення" багаторівневих масивів Усередині циклу перевіряється, чи є поточний елемент масиву arr[i] також масивом. Це робиться за допомогою оператора instanceof Array. Якщо елемент є масивом:
+//Використовується метод splice для видалення поточного елемента (вкладеного масиву) та вставки на його місце всіх елементів цього вкладеного масиву. Метод apply використовується для того, щоб передати аргументи методу splice як масив. Аргументи [i, 1] вказують, що з індексу i потрібно видалити 1 елемент.
+//Метод concat використовується для об'єднання масиву [i, 1] з елементами вкладеного масиву. Змінна i зменшується на 1, оскільки після видалення одного елемента і вставки кількох нових елементів, наступний елемент буде знаходитися на попередньому індексі:
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat
+//Функція може бути не ефективною для дуже великих і глибоко вкладених масивів, оскільки кожне об'єднання масивів може призводити до перекопіювання елементів:
+
+
+
+function flattenArray(arr) {
+  for (var i = 0; i < arr.length; i++) {
+    if (arr[i] instanceof Array) {
+      Array.prototype.splice.apply(arr, [i, 1].concat(arr[i]));
+      i--;
+    }
+  }
+
+  return arr;
+}
+console.log(flattenArray(arr1)); //
+
+//Вирішення 6 - ок. 
+
+//Логіка:
+//Якщо елемент масиву є масивом, рекурсивно викликаємо функцію для цього підмасиву.
+//Результат рекурсивного виклику додаємо до результуючого масиву.
+//Якщо елемент не є масивом, додаємо його до результуючого масиву.
+
+const arr1 = [0, 1, 2, [3, 4, [5, 6]]];
+const arr2 = [0, 1, 2, [3, 4, [5, 6, [7, 8], [71, 81]], [72, [73, 83], 84]]];
+
+
+function flattenArrayRecursive(arr) {
+  let result = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (Array.isArray(arr[i])) {
+      result = result.concat(flattenArrayRecursive(arr[i]));
+    } else {
+      result.push(arr[i]);
+    }
+  }
+  return result;
+}
+
+console.log(flattenArrayRecursive(arr2)); //0:0
+//0:0
+// 1:1
+// 2:2
+// 3:3
+// 4:4
+// 5:5
+// 6:6
+// 7:7
+// 8:8
+// 9:71
+// 10:81
+// 11:72
+// 12:73
+// 13:83
+// 14:84
+
+
+// Завдання №3 :написати свою власну функцію - незалежно скільки рівнів має масив:
 function transformArray(arr) {
   .....
   return newArr;
