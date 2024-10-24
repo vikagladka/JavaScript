@@ -744,3 +744,25 @@ console.log('flatArr:', flatArr);
 
 flatArrFun(arr2);
 console.log('flatArr:', flatArr);
+
+
+//Сплющення масиву за допомогою методів concat() та push():
+
+
+function flat(arr) {
+  let result = [];
+  for (let i = 0; i < arr.length; i++) {
+      if (Array.isArray(arr[i])) {
+          result = result.concat(flat(arr[i]));
+      } else {
+          result.push(arr[i]);
+      }
+  }
+  return result;
+}
+
+//The concat() method of Array instances is used to merge two or more arrays.
+// This method does not change the existing arrays, but instead returns a new array.
+console.log(flat(arr1));
+console.log(flat(arr2));
+console.log(flat(arr3));
